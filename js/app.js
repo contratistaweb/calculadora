@@ -1,192 +1,166 @@
-var teclas = document.getElementsByClassName('tecla');
+
+var teclas = document.querySelectorAll('.tecla');
 var pantalla = document.getElementById('display');
 var operando_a, operando_b, operacion;
 
+
 function Calculadora() {
 	
-	//cero
-	teclas['15'].onclick = function(e){
-		if(pantalla.textContent=='0'){
-			pantalla.textContent = '0';
-		}else if(pantalla.textContent.length < 8){
-			pantalla.textContent = pantalla.textContent + '0';
-		}else{
-			if(pantalla.textContent.length = 8){
-				pantalla.textContent = pantalla.textContent
-			}
-		}
-	}
-	
-	//uno
-	teclas['12'].onclick = function(e){
-		if(pantalla.textContent=='0'){
-			pantalla.textContent = '1';
-		}else if(pantalla.textContent.length < 8){
-			pantalla.textContent = pantalla.textContent + '1';
-		}else{
-			if(pantalla.textContent.length = 8){
-				pantalla.textContent = pantalla.textContent
-			}
-		}
-	}
-	
-	//dos
-	teclas['13'].onclick = function(e){
-		if(pantalla.textContent=='0'){
-			pantalla.textContent = '2';
-		}else if(pantalla.textContent.length < 8){
-			pantalla.textContent = pantalla.textContent + '2';
-		}else{
-			if(pantalla.textContent.length = 8){
-				pantalla.textContent = pantalla.textContent
-			}
-		}
-	}
-	
-	//tres 
-	teclas['14'].onclick = function(e){
-		if(pantalla.textContent=='0'){
-			pantalla.textContent = '3';
-		}else if(pantalla.textContent.length < 8){
-			pantalla.textContent = pantalla.textContent + '3';
-		}else{
-			if(pantalla.textContent.length = 8){
-				pantalla.textContent = pantalla.textContent
-			}
-		}
-	}
-	
-	//cuatro
-	teclas['8'].onclick = function(e){
-		if(pantalla.textContent=='0'){
-			pantalla.textContent = '4';
-		}else if(pantalla.textContent.length < 8){
-			pantalla.textContent = pantalla.textContent + '4';
-		}else{
-			if(pantalla.textContent.length = 8){
-				pantalla.textContent = pantalla.textContent
-			}
-		}
-	}
-	
-	//cinco
-	teclas['9'].onclick = function(e){
-		if(pantalla.textContent=='0'){
-			pantalla.textContent = '5';
-		}else if(pantalla.textContent.length < 8){
-			pantalla.textContent = pantalla.textContent + '5';
-		}else{
-			if(pantalla.textContent.length = 8){
-				pantalla.textContent = pantalla.textContent
-			}
-		}
-	}
-	
-	//seis
-	teclas['10'].onclick = function(e){
-		if(pantalla.textContent=='0'){
-			pantalla.textContent = '6';
-		}else if(pantalla.textContent.length < 8){
-			pantalla.textContent = pantalla.textContent + '6';
-		}else{
-			if(pantalla.textContent.length = 8){
-				pantalla.textContent = pantalla.textContent
-			}
-		}
-	}
-	
-	//siete
-	teclas['4'].onclick = function(e){
-		if(pantalla.textContent=='0'){
-			pantalla.textContent = '7';
-		}else if(pantalla.textContent.length < 8){
-			pantalla.textContent = pantalla.textContent + '7';
-		}else{
-			if(pantalla.textContent.length = 8){
-				pantalla.textContent = pantalla.textContent
-			}
-		}
-	}
-	
-	//ocho
-	teclas['5'].onclick = function(e){
-		if(pantalla.textContent=='0'){
-			pantalla.textContent = '8';
-		}else if(pantalla.textContent.length < 8){
-			pantalla.textContent = pantalla.textContent + '8';
-		}else{
-			if(pantalla.textContent.length = 8){
-				pantalla.textContent = pantalla.textContent
-			}
-		}
-	}
-	
-	//nueve
-	teclas['6'].onclick = function(e){
-		if(pantalla.textContent=='0'){
-			pantalla.textContent = '9';
-		}else if(pantalla.textContent.length < 8){
-			pantalla.textContent = pantalla.textContent + '9';
-		}else{
-			if(pantalla.textContent.length = 8){
-				pantalla.textContent = pantalla.textContent
-			}
-		}
-	}
-	
-	// punto Revisar ---------->
-	teclas['16'].onclick = function(e){
-		if(pantalla.textContent.split(".").length-1 == 1){
-			pantalla.textContent = pantalla.textContent ;
-		}else{
-			pantalla.textContent = pantalla.textContent + '.';
-		}
-	}
-	
-	// mas o menos
-	teclas['1'].onclick = function(e){
-		if(pantalla.textContent == '0'){
-			pantalla.textContent = '-' + pantalla.textContent;
-		}else{
-			pantalla.textContent = pantalla.textContent*(-1);
-		}
-	}
-	
-	// On/C
-	teclas['0'].onclick = function(e){
+	//   On/C
+	teclas[0].onclick = function(e){
 		resetear();
+	};
+	
+	//   Sign
+	teclas[1].onclick = function(e){
+		if(pantalla.textContent != '0'){
+		pantalla.textContent = pantalla.textContent*(-1);
+		}
+	};
+		//  Mas
+	teclas[18].onclick = function(e){
+		operando_a = pantalla.textContent;
+		limpiar();
+		operacion = teclas[18].id;
+	};
+		//   Menos
+	teclas[11].onclick = function(e){
+		operando_a = pantalla.textContent;
+		limpiar();
+		operacion = teclas[11].id;
+	};
+		//   Por
+	teclas[7].onclick = function(e){
+		operando_a = pantalla.textContent;
+		limpiar();
+		operacion = teclas[7].id;
+	};
+		//   Dividido
+	teclas[3].onclick = function(e){
+		operando_a = pantalla.textContent;
+		limpiar();
+		operacion = teclas[3].id;
+	};
+			//   Igual
+	teclas[17].onclick = function(e){
+		operando_b = pantalla.textContent;
+		igual();
+	};
+	
+		//   Punto
+	teclas[16].onclick = function(e){
+		if( pantalla.textContent.split(".").length-1 == 0) {
+			pantalla.textContent = pantalla.textContent + '.';	
+		}else{
+			pantalla.textContent = pantalla.textContent ;
+	}
 	}
 	
-	//suma
-	teclas['18'].onclick = function(e){
-		operando_a = pantalla.textContent;
-		operacion = '+';
-		limpiar();
-	}
-	//resta
-	teclas['11'].onclick = function(e){
-		operando_a = pantalla.textContent;
-		operacion = '-';
-		limpiar();
-	}
-	//multiplicacion
-	teclas['7'].onclick = function(e){
-		operando_a = pantalla.textContent;
-		operacion = '*';
-		limpiar();
-	}
-	//division
-	teclas['3'].onclick = function(e){
-		operando_a = pantalla.textContent;
-		operacion = '/';
-		limpiar();
-	}
-	//igual --> Evaluar resultado para recortarlo
-	teclas['17'].onclick = function(e){
-			operando_b = pantalla.textContent;
-			resultado();
-	}
-}
+	// <---------- Numeros ---------->
+	//   Cero
+	teclas[15].onclick = function(e){
+		if(pantalla.textContent == '0'){
+		pantalla.textContent = pantalla.textContent;
+		}else{
+			if(pantalla.textContent.length < 8){
+			pantalla.textContent = pantalla.textContent + teclas[15].id;
+			}
+		}
+	};
+		//   Uno
+	teclas[12].onclick = function(e){
+		if(pantalla.textContent == '0'){
+			pantalla.textContent = teclas[12].id;
+		}else{
+			if(pantalla.textContent.length < 8){
+			pantalla.textContent = pantalla.textContent + teclas[12].id;
+			}
+		}
+	};
+			//   Dos
+	teclas[13].onclick = function(e){
+		if(pantalla.textContent == '0'){
+		pantalla.textContent = teclas[13].id;
+		}else{
+			if(pantalla.textContent.length < 8){
+			pantalla.textContent = pantalla.textContent + teclas[13].id;
+			}
+		}
+	};
+			//   Tres
+	teclas[14].onclick = function(e){
+		if(pantalla.textContent == '0'){
+		pantalla.textContent = teclas[14].id;
+		}else{
+			if(pantalla.textContent.length < 8){
+			pantalla.textContent = pantalla.textContent + teclas[14].id;
+			}
+		}
+	};
+			//   Cuatro
+	teclas[8].onclick = function(e){
+		if(pantalla.textContent == '0'){
+		pantalla.textContent = teclas[8].id;
+		}else{
+			if(pantalla.textContent.length < 8){
+			pantalla.textContent = pantalla.textContent + teclas[8].id;
+			}
+		}
+	};
+			//   Cinco
+	teclas[9].onclick = function(e){
+		if(pantalla.textContent == '0'){
+		pantalla.textContent = teclas[9].id;
+		}else{
+			if(pantalla.textContent.length < 8){
+			pantalla.textContent = pantalla.textContent + teclas[9].id;
+			}
+		}
+	};
+			//   Seis
+	teclas[10].onclick = function(e){
+		if(pantalla.textContent == '0'){
+		pantalla.textContent = teclas[10].id;
+		}else{
+			if(pantalla.textContent.length < 8){
+			pantalla.textContent = pantalla.textContent + teclas[10].id;
+			}
+		}
+	};
+				//   Siete
+	teclas[4].onclick = function(e){
+		if(pantalla.textContent == '0'){
+		pantalla.textContent = teclas[4].id;
+		}else{
+			if(pantalla.textContent.length < 8){
+			pantalla.textContent = pantalla.textContent + teclas[4].id;
+			}
+		}
+	};
+			//   Ocho
+	teclas[5].onclick = function(e){
+		if(pantalla.textContent == '0'){
+		pantalla.textContent = teclas[5].id;
+		}else{
+			if(pantalla.textContent.length < 8){
+			pantalla.textContent = pantalla.textContent + teclas[5].id;
+			}
+		}
+	};
+			//   Nueve
+	teclas[6].onclick = function(e){
+		if(pantalla.textContent == '0'){
+		pantalla.textContent = teclas[6].id;
+		}else{
+			if(pantalla.textContent.length < 8){
+			pantalla.textContent = pantalla.textContent + teclas[6].id;
+			}
+		}
+	};
+	
+
+};
+Calculadora();
 
 function limpiar(){
 	pantalla.textContent = '';
@@ -199,24 +173,31 @@ function resetear(){
 	operacion = ''
 }
 
-function resultado(){
+
+function igual(){
 	var res = 0
 	
 	switch(operacion){
-		case '+':
+		case 'mas':
 			res = parseFloat(operando_a) + parseFloat(operando_b);
 			break;
-			case '-':
+			case 'menos':
 			res = parseFloat(operando_a) - parseFloat(operando_b);
 			break;
-			case '*':
+			case 'por':
 			res = parseFloat(operando_a) * parseFloat(operando_b);
 			break;
-			case '/':
+			case 'dividido':
 			res = parseFloat(operando_a) / parseFloat(operando_b);
 			break;
 									}
-	pantalla.textContent = res
-}
-
-	Calculadora();
+	
+	if(res.length < 8){
+			pantalla.textContent = res;
+		}else{
+			var ent = res.toFixed().length;
+			pantalla.textContent = res.toFixed(8 - ent);
+		}
+	return(pantalla.textContent);
+};
+	
