@@ -1,4 +1,3 @@
-
 Calculadora();
 function Calculadora() {
 	var pantalla = document.getElementById('display');
@@ -81,21 +80,13 @@ function Calculadora() {
 					}
 				}
 			}
-				
-												//<---   --->
-		function mouseDown() {
-  x.style ='border-radius:25px';
-}
-
-function mouseUp() {
-  x.style ='border-radius:0px';
-}
-		mouseDown();
-					mouseUp();
-				//<----   --->
-
-				
-				
+			document.getElementById(x.id).animate([
+				{ transform: 'scale(0.9)' }, 
+				{ transform: 'scale(1)' }
+			], { 
+				duration: 100,
+				iterations: 1
+			});
 		});
 	}
 }
