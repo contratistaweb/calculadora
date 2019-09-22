@@ -1,5 +1,5 @@
 Calculadora();
-function Calculadora() {
+function Calculadora(){
 	var pantalla = document.getElementById('display');
 	var num_a, num_b, operacion;
 	var teclas = document.querySelectorAll('.teclado .tecla');
@@ -80,13 +80,14 @@ function Calculadora() {
 					}
 				}
 			}
-			document.getElementById(x.id).animate([
-				{ transform: 'scale(0.9)' }, 
-				{ transform: 'scale(1)' }
-			], { 
-				duration: 100,
-				iterations: 1
-			});
+		});
+		teclas[i].addEventListener("mousedown", function(pulsar){
+			var x = pulsar.target;
+			x.style.transform = "scale(0.95)";
+		});
+		teclas[i].addEventListener("mouseup", function(pulsar){
+			var x = pulsar.target;
+			x.style.transform = "scale(1)";
 		});
 	}
 }
